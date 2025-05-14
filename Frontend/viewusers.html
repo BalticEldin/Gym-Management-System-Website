@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users - Royal Fitness</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .table-box {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .table thead {
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        .btn-warning,
+        .btn-danger {
+            border-radius: 8px;
+        }
+
+        .modal-content {
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+
+        .modal-header,
+        .modal-footer {
+            border-color: #444;
+        }
+
+        .modal-title {
+            color: #ffc107;
+        }
+
+        .form-control {
+            background-color: #2b2b2b;
+            color: white;
+            border: 1px solid #555;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container table-box">
+    <h2>All Registered Users 👥</h2>
+
+    <table id="usersTable" class="table table-striped table-dark table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Birthdate</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form id="editForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editID">
+                    <div class="mb-3">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="editFirstName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="editLastName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="editEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" id="editUsername" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Birthdate</label>
+                        <input type="date" class="form-control" id="editBirthdate" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    let dataTable;
+    let editModal = new bootstrap.Modal(document.getElementById('editModal'));
+
+    $(document).ready(function() {
+        $.ajax({
+            url: '../Backend/get_users.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                dataTable = $('#usersTable').DataTable({
+                    data: response,
+                    columns: [
+                        { data: 'ID' },
+                        { data: 'first_name' },
+                        { data: 'last_name' },
+                        { data: 'email' },
+                        { data: 'username' },
+                        { data: 'birthdate' },
+                        { data: 'status' },
+                        { data: 'created_at' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+                                return `
+                                    <button class="btn btn-sm btn-warning editBtn" data-id="${row.ID}">Edit</button>
+                                    <button class="btn btn-sm btn-danger deleteBtn" data-id="${row.ID}">Delete</button>
+                                `;
+                            }
+                        }
+                    ]
+                });
+
+                // Edit Button
+                $('#usersTable tbody').on('click', '.editBtn', function () {
+                    const rowData = dataTable.row($(this).parents('tr')).data();
+                    $('#editID').val(rowData.ID);
+                    $('#editFirstName').val(rowData.first_name);
+                    $('#editLastName').val(rowData.last_name);
+                    $('#editEmail').val(rowData.email);
+                    $('#editUsername').val(rowData.username);
+                    $('#editBirthdate').val(rowData.birthdate);
+                    editModal.show();
+                });
+
+                // Delete Button
+                $('#usersTable tbody').on('click', '.deleteBtn', function () {
+                    const rowData = dataTable.row($(this).parents('tr')).data();
+                    if (confirm('Are you sure you want to delete this user?')) {
+                        $.post('../Backend/delete_user.php', { id: rowData.ID }, function (res) {
+                            const result = JSON.parse(res);
+                            if (result.status === 'success') {
+                                alert('User deleted successfully.');
+                                location.reload();
+                            } else {
+                                alert('Delete failed: ' + result.message);
+                            }
+                        });
+                    }
+                });
+            },
+            error: function() {
+                alert('Failed to fetch users.');
+            }
+        });
+
+        // Update User Form Submit
+        $('#editForm').submit(function(e) {
+            e.preventDefault();
+
+            const id = $('#editID').val();
+            const first_name = $('#editFirstName').val();
+            const last_name = $('#editLastName').val();
+            const email = $('#editEmail').val();
+            const username = $('#editUsername').val();
+            const birthdate = $('#editBirthdate').val();
+
+            $.post('../Backend/update_user.php', {
+                id, first_name, last_name, email, username, birthdate
+            }, function(res) {
+                const result = JSON.parse(res);
+                if (result.status === 'success') {
+                    alert('User updated successfully.');
+                    editModal.hide();
+                    location.reload();
+                } else {
+                    alert('Update failed: ' + result.message);
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    
+</script>
+
+</body>
+</html>
