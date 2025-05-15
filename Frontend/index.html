@@ -239,19 +239,26 @@
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 <script src="app.js"></script>
 
-<!-- Admin Login Handling: View Users and Join Us Button -->
+<!-- Admin and User Login Handling: View Users/Profile and Join Us Button -->
 <script>
     function updateHeader() {
         const topBtnContainer = document.getElementById('top-btn-container');
-        const loggedIn = localStorage.getItem('admin_logged_in');
+
+        // Check admin login
+        const adminLoggedIn = localStorage.getItem('admin_logged_in');
         const adminUsername = localStorage.getItem('admin_username');
 
-        if (loggedIn === 'true' && adminUsername) {
+        // Check user login
+        const userLoggedIn = localStorage.getItem('user_logged_in');
+        const userUsername = localStorage.getItem('user_username');
+
+        if (adminLoggedIn === 'true' && adminUsername) {
+            // Show admin options
             topBtnContainer.innerHTML = `
-                    <span class="welcome-text">Welcome, ${adminUsername}</span>
-                    <a href="viewusers.html" class="nav-btn" style="margin-left: 10px;">View Users</a>
-                    <a href="#" id="logout-btn" class="nav-btn" style="margin-left: 10px;">Log out</a>
-                `;
+                <span class="welcome-text">Welcome, Admin ${adminUsername}</span>
+                <a href="viewusers.html" class="nav-btn" style="margin-left: 10px;">View Users</a>
+                <a href="#" id="logout-btn" class="nav-btn" style="margin-left: 10px;">Log out</a>
+            `;
 
             document.getElementById('logout-btn').addEventListener('click', function (e) {
                 e.preventDefault();
@@ -259,16 +266,33 @@
                 localStorage.removeItem('admin_username');
                 window.location.href = 'authentication.html';
             });
-        } else {
+        } else if (userLoggedIn === 'true' && userUsername) {
+            // Show user welcome and logout only
+            topBtnContainer.innerHTML = `
+        <span class="welcome-text">Welcome, ${userUsername}</span>
+        <a href="#" id="logout-btn" class="nav-btn" style="margin-left: 10px;">Log out</a>
+    `;
+
+            document.getElementById('logout-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('user_logged_in');
+                localStorage.removeItem('user_username');
+                window.location.href = 'authentication.html';
+            });
+        }
+        else {
+            // No one logged in
             topBtnContainer.innerHTML = `<a href="authentication.html" class="nav-btn">Join us</a>`;
         }
     }
 
     function updateHomeJoinButton() {
-        const loggedIn = localStorage.getItem('admin_logged_in');
+        const adminLoggedIn = localStorage.getItem('admin_logged_in');
+        const userLoggedIn = localStorage.getItem('user_logged_in');
         const joinBtn = document.getElementById('home-join-us-btn');
-        if (loggedIn === 'true' && joinBtn) {
-            joinBtn.style.display = 'none'; // hide the Join Us button when admin is logged in
+
+        if ((adminLoggedIn === 'true' || userLoggedIn === 'true') && joinBtn) {
+            joinBtn.style.display = 'none'; // hide the Join Us button when logged in
         }
     }
 
@@ -277,6 +301,7 @@
         updateHomeJoinButton();
     });
 </script>
+
 </body>
 
 </html>
