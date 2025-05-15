@@ -68,6 +68,7 @@
             text-align: center;
             margin-top: 10px;
         }
+
         .success-message {
             color: green;
             text-align: center;
@@ -95,7 +96,8 @@
             <button type="submit" class="btn btn-custom btn-login">Log In</button>
             <button type="button" class="btn btn-custom btn-signup" onclick="showSignupForm()">Sign Up</button>
             <button type="button" class="btn btn-custom btn-admin" onclick="showAdminForm()">Log In as Admin</button>
-            <a href="index.html" class="btn btn-custom btn-back mt-2">Enter as Guest</a>
+            <!-- Changed to button with function to mark guest -->
+            <button type="button" class="btn btn-custom btn-back mt-2" onclick="enterAsGuest()">Enter as Guest</button>
         </div>
     </form>
     <div id="user-error-message" class="error-message"></div>
@@ -177,6 +179,12 @@
         document.getElementById('signupForm').style.display = 'block';
     }
 
+    // Guest enter function: mark localStorage then redirect
+    function enterAsGuest() {
+        localStorage.setItem('user_logged_in', 'guest');
+        window.location.href = 'index.html';
+    }
+
     // User login form submit
     document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -188,7 +196,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    // Save login info in localStorage
+                    // Save login info in localStorage (normal user)
                     localStorage.setItem('user_logged_in', 'true');
                     localStorage.setItem('user_username', data.username || formData.get('username'));
                     // Redirect to index.html
@@ -263,4 +271,3 @@
 </body>
 
 </html>
-

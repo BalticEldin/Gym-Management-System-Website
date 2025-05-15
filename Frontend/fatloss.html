@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weekly Gym Workout Plan - Fat Loss</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+
+    <!-- Variables & Styles -->
+    <style>
+        :root {
+            --main-color: #00ff99;
+            --snd-bg-color: #1e1e1e;
+            --bg-color: #111;
+            --text-color: #fff;
+        }
+
+        body {
+            background: var(--bg-color);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--main-color);
+        }
+
+        .pdf-container {
+            background: var(--snd-bg-color);
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            border: 1px solid var(--main-color);
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+            word-break: break-word;
+        }
+
+        .custom-table th {
+            background-color: var(--main-color);
+            color: var(--bg-color);
+            font-weight: bold;
+        }
+
+        .custom-table td {
+            background-color: #222;
+        }
+
+        .btn-custom {
+            background-color: var(--main-color);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #00cc7a;
+        }
+
+        td.exercises {
+            text-align: left;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="pdf-container" id="workout-plan">
+    <h1>Weekly Gym Workout Plan (Fat Loss)</h1>
+    <table class="custom-table">
+        <thead>
+        <tr>
+            <th>Day</th>
+            <th>Workout</th>
+            <th>Sets</th>
+            <th>Reps</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Monday</td>
+            <td class="exercises" style="text-align:left;">
+                Jump Rope Warmup<br>
+                Circuit: Bodyweight Squats<br>
+                Push-ups<br>
+                Mountain Climbers<br>
+                Burpees
+            </td>
+            <td>1, 3, 3, 3, 3</td>
+            <td>5 min, 15, 12, 20, 10</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td class="exercises" style="text-align:left;">
+                Treadmill Sprints<br>
+                Kettlebell Swings<br>
+                Dumbbell Thrusters<br>
+                Plank to Push-up<br>
+                Jumping Lunges
+            </td>
+            <td>5, 4, 4, 3, 3</td>
+            <td>30 sec, 15, 12, 10, 12 per leg</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td class="exercises" style="text-align:left;">
+                Rowing Machine Warmup<br>
+                Deadlifts (Moderate Weight)<br>
+                Pull-ups or Assisted Pull-ups<br>
+                Bicycle Crunches<br>
+                Box Jumps
+            </td>
+            <td>1, 4, 3, 3, 3</td>
+            <td>5 min, 10, 8, 20, 12</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td class="exercises" style="text-align:left;">
+                Battle Ropes<br>
+                Dumbbell Snatch<br>
+                Russian Twists<br>
+                Jump Squats<br>
+                Push-up to Side Plank
+            </td>
+            <td>3, 4, 3, 3, 3</td>
+            <td>30 sec, 10, 20, 15, 10</td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td class="exercises" style="text-align:left;">
+                HIIT Circuit:<br>
+                - Sprint 30s<br>
+                - Rest 30s<br>
+                - Jumping Jacks 30s<br>
+                - Rest 30s<br>
+                - Mountain Climbers 30s
+            </td>
+            <td>4 rounds</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Saturday</td>
+            <td>Active Recovery (Light Jog or Walk)</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Sunday</td>
+            <td>Rest Day</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn-custom" id="download-pdf">Export as PDF</button>
+</div>
+
+<!-- html2pdf Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- Export Script -->
+<script>
+    document.getElementById('download-pdf').addEventListener('click', () => {
+        const element = document.getElementById('workout-plan');
+        const opt = {
+            margin: 0.5,
+            filename: 'weekly-gym-workout-fat-loss.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+    });
+</script>
+</body>
+</html>
