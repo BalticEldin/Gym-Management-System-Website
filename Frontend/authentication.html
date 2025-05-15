@@ -177,35 +177,35 @@
         document.getElementById('signupForm').style.display = 'block';
     }
 
-    function handleFormSubmission(formId, url, errorMessageElementId) {
-        const formData = new FormData(document.getElementById(formId));
-
-        fetch(url, {
+    // User login form submit
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(document.getElementById('loginForm'));
+        fetch('../Backend/userlogin.php', {
             method: 'POST',
             body: formData
         })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
+                    // Save login info in localStorage
+                    localStorage.setItem('user_logged_in', 'true');
+                    localStorage.setItem('user_username', data.username || formData.get('username'));
+                    // Redirect to index.html
                     window.location.href = 'index.html';
                 } else {
-                    document.getElementById(errorMessageElementId).textContent = data.message;
+                    document.getElementById('user-error-message').textContent = data.message;
                 }
             })
             .catch(error => {
-                document.getElementById(errorMessageElementId).textContent = "An error occurred. Please try again later.";
+                document.getElementById('user-error-message').textContent = "An error occurred. Please try again later.";
             });
-    }
-
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        handleFormSubmission('loginForm', '../Backend/userlogin.php', 'user-error-message', true);
     });
 
+    // Admin login form submit
     document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
         e.preventDefault();
         const formData = new FormData(document.getElementById('adminLoginForm'));
-
         fetch('../Backend/adminlogin.php', {
             method: 'POST',
             body: formData
@@ -213,6 +213,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
+                    // Save admin login info in localStorage
+                    localStorage.setItem('admin_logged_in', 'true');
+                    localStorage.setItem('admin_username', data.username || formData.get('admin_username'));
+                    // Redirect to index.html
                     window.location.href = 'index.html';
                 } else {
                     document.getElementById('admin-error-message').textContent = data.message;
@@ -223,15 +227,17 @@
             });
     });
 
-
+    // Signup form submit
     document.getElementById('signupFormDetails').addEventListener('submit', function (e) {
         e.preventDefault();
-        handleFormSubmission('signupFormDetails', '../Backend/signup.php', 'signup-error-message');
+        handleSignupSubmission();
     });
 
-    function handleFormSubmission(formId, url, errorMessageElementId, isLogin = false) {
+    function handleSignupSubmission() {
+        const formId = 'signupFormDetails';
+        const url = '../Backend/signup.php';
+        const errorMessageElementId = 'signup-error-message';
         const formData = new FormData(document.getElementById(formId));
-
         fetch(url, {
             method: 'POST',
             body: formData
@@ -239,16 +245,11 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    if (isLogin) {
-                        // Redirect to index.html after successful login
-                        window.location.href = 'index.html';
-                    } else {
-                        // Show success message for signup
-                        document.getElementById(errorMessageElementId).textContent = data.message;
-                        document.getElementById(errorMessageElementId).classList.add('success-message');
-                    }
+                    // Show success message (do not redirect)
+                    const msgElem = document.getElementById(errorMessageElementId);
+                    msgElem.textContent = data.message;
+                    msgElem.classList.add('success-message');
                 } else {
-                    // Display error message
                     document.getElementById(errorMessageElementId).textContent = data.message;
                 }
             })
@@ -256,7 +257,6 @@
                 document.getElementById(errorMessageElementId).textContent = "An error occurred. Please try again later.";
             });
     }
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

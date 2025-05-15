@@ -2,47 +2,64 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Royal Fitness</title>
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* Additional style for welcome text */
+        .welcome-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
-    <!--Header Section-->
-    <header>
-        <a href="#" class="logo">Royal<span>Fitness</span></a>
-        <div class='bx bx-menu' id="menu-icon"></div>
-        <ul class="navbar">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#plans">Pricing</a></li>
-            <li><a href="#review">Review</a></li>
-        </ul>
-        <div class="top-btn">
-            <a href="authentication.html" class="nav-btn">Join us</a>
-        </div>
-    </header>
+<!-- Header Section -->
+<header>
+    <a href="#" class="logo">Royal<span>Fitness</span></a>
+    <div class="bx bx-menu" id="menu-icon"></div>
+    <ul class="navbar">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#plans">Pricing</a></li>
+        <li><a href="#review">Review</a></li>
+    </ul>
+    <div class="top-btn" id="top-btn-container">
+        <a href="authentication.html" class="nav-btn">Join us</a>
+    </div>
+</header>
 
-    <!--Home Section Code-->
-    <section class="home" id="home">
-        <div class="home-content" data-aos="zoom-in">
-            <h3>Build Your</h3>
-            <h1>Dream Physique</h1>
-            <h3><span class="multiple-text"></span></h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit esse error exercitationem tempore
-                sed impedit.</p>
-            <a href="authentication.html" class="btn">Join Us</a>
-        </div>
-        <div class="home-img" data-aos="zoom-in">
-            <img src="assets/heroImage.png" alt="Home Image">
-        </div>
-    </section>
+<!-- Home Section -->
+<section class="home" id="home">
+    <div class="home-content" data-aos="zoom-in">
+        <h3>Build Your</h3>
+        <h1>Dream Physique</h1>
+        <h3><span class="multiple-text"></span></h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit esse error exercitationem tempore sed
+            impedit.</p>
+        <a href="authentication.html" class="btn" id="home-join-us-btn">Join Us</a>
+    </div>
+    <div class="home-img" data-aos="zoom-in">
+        <img src="assets/heroImage.png" alt="Home Image" />
+    </div>
+</section>
 
-    <!--Services Section Code-->
+<!-- Services Section -->
+<section class="services" id="services">
     <section class="services" id="services">
         <h2 class="heading" data-aos="zoom-in-down">Our <span>Services</span></h2>
         <div class="services-content" data-aos="zoom-in-up">
@@ -72,156 +89,194 @@
             </div>
         </div>
     </section>
+</section>
 
-    <!--About Section Code-->
-    <section class="about" id="about">
-        <div class="about-img" data-aos="zoom-in-down">
-            <img src="assets/about.jpg">
+<!-- About Us Section -->
+<section class="about" id="about">
+    <div class="about-img" data-aos="zoom-in-down">
+        <img src="assets/about.jpg">
+    </div>
+    <div class="about-content" data-aos="zoom-in-up">
+        <h2 class="heading">Why Choose Us?</h2>
+
+        <p>Our Diverse membership base creates a friendly and supportive atmosphere,where you can make friends and
+            stay motivated</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur asperiores ipsa voluptas possimus
+            nesciunt autem eius odit laudantium modi, minus perspiciatis nihil atque. At, animi doloribus. Saepe
+            quis natus maiores?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus suscipit labore perspiciatis
+            natus nam quidem mollitia. Praesentium nobis at non quo est officia explicabo magnam consectetur amet
+            exercitationem, illo veniam.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia deserunt perspiciatis, tempora delectus,
+            corrupti mollitia odit recusandae fugiat praesentium dicta optio! Asperiores cupiditate tempora fuga
+            quas a fugit ipsum dolor.</p>
+
+        <a href="#" class="btn">Book a Free Class</a>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="plans" id="plans">
+    <h2 class="heading" data-aos="zoom-in-down">Our<span>Plans</span></h2>
+
+    <div class="plans-content" data-aos="zoom-in-up">
+        <div class="box">
+            <h3>Basic</h3>
+            <h2><span>$100/Month</span></h2>
+            <ul>
+                <li>Smart Workout Plan</li>
+                <li>At Home Workout</li>
+            </ul>
+            <a href="#">
+                Join Now
+                <i class='bx bx-right-arrow-alt'></i>
+            </a>
         </div>
-        <div class="about-content" data-aos="zoom-in-up">
-            <h2 class="heading">Why Choose Us?</h2>
-
-            <p>Our Diverse membership base creates a friendly and supportive atmosphere,where you can make friends and
-                stay motivated</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur asperiores ipsa voluptas possimus
-                nesciunt autem eius odit laudantium modi, minus perspiciatis nihil atque. At, animi doloribus. Saepe
-                quis natus maiores?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus suscipit labore perspiciatis
-                natus nam quidem mollitia. Praesentium nobis at non quo est officia explicabo magnam consectetur amet
-                exercitationem, illo veniam.</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia deserunt perspiciatis, tempora delectus,
-                corrupti mollitia odit recusandae fugiat praesentium dicta optio! Asperiores cupiditate tempora fuga
-                quas a fugit ipsum dolor.</p>
-
-            <a href="#" class="btn">Book a Free Class</a>
+        <div class="box">
+            <h3>PRO</h3>
+            <h2><span>$150/Month</span></h2>
+            <ul>
+                <li>Train with PRO's</li>
+                <li>Smart Workout Plan</li>
+                <li>At Home Workout</li>
+            </ul>
+            <a href="#">
+                Join Now
+                <i class='bx bx-right-arrow-alt'></i>
+            </a>
         </div>
-    </section>
-    <!--Pricing Section Code-->
-
-    <section class="plans" id="plans">
-        <h2 class="heading" data-aos="zoom-in-down">Our<span>Plans</span></h2>
-
-        <div class="plans-content" data-aos="zoom-in-up">
-            <div class="box">
-                <h3>Basic</h3>
-                <h2><span>$100/Month</span></h2>
-                <ul>
-                    <li>Smart Workout Plan</li>
-                    <li>At Home Workout</li>
-                </ul>
-                <a href="#">
-                    Join Now
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
-            <div class="box">
-                <h3>PRO</h3>
-                <h2><span>$150/Month</span></h2>
-                <ul>
-                    <li>Train with PRO's</li>
-                    <li>Smart Workout Plan</li>
-                    <li>At Home Workout</li>
-                </ul>
-                <a href="#">
-                    Join Now
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
-            <div class="box">
-                <h3>PREMIUM</h3>
-                <h2><span>$300/Month</span></h2>
-                <ul>
-                    <li>ELITE Workouts and Classes</li>
-                    <li>Train with PRO's</li>
-                    <li>Smart Workout Plan</li>
-                    <li>At Home Workout</li>
-                    <li>Personal Training</li>
-                </ul>
-                <a href="#">
-                    Join Now
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
+        <div class="box">
+            <h3>PREMIUM</h3>
+            <h2><span>$300/Month</span></h2>
+            <ul>
+                <li>ELITE Workouts and Classes</li>
+                <li>Train with PRO's</li>
+                <li>Smart Workout Plan</li>
+                <li>At Home Workout</li>
+                <li>Personal Training</li>
+            </ul>
+            <a href="#">
+                Join Now
+                <i class='bx bx-right-arrow-alt'></i>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!--Review Section Code-->
+<!-- Review Section -->
+<section class="review" id="review">
+    <div class="review-box">
+        <h2 class="heading" data-aos="zoom-in-down">Client<span>Reviews</span></h2>
 
-    <section class="review" id="review">
-        <div class="review-box">
-            <h2 class="heading" data-aos="zoom-in-down">Client<span>Reviews</span></h2>
-
-            <div class="wrapper" data-aos="zoom-in-up">
-                <div class="review-item">
-                    <img src="assets/1.jpg">
-                    <h2>John</h2>
-                    <div class="rating">
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa facere ex, adipisci enim
-                        perferendis nostrum doloremque voluptatem veritatis consectetur illo dolorum quos delectus quae
-                        rem, sed asperiores sequi reiciendis! Illum.</p>
+        <div class="wrapper" data-aos="zoom-in-up">
+            <div class="review-item">
+                <img src="assets/1.jpg">
+                <h2>John</h2>
+                <div class="rating">
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
                 </div>
-
-                <div class="review-item">
-                    <img src="assets/2.jpg">
-                    <h2>Steve</h2>
-                    <div class="rating">
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa facere ex, adipisci enim
-                        perferendis nostrum doloremque voluptatem veritatis consectetur illo dolorum quos delectus quae
-                        rem, sed asperiores sequi reiciendis! Illum.</p>
-                </div>
-                <div class="review-item">
-                    <img src="assets/3.jpg">
-                    <h2>David</h2>
-                    <div class="rating">
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                        <i class='bx bxs-star' id="Star"></i>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa facere ex, adipisci enim
-                        perferendis nostrum doloremque voluptatem veritatis consectetur illo dolorum quos delectus quae
-                        rem, sed asperiores sequi reiciendis! Illum.</p>
-                </div>
-
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa facere ex, adipisci enim
+                    perferendis nostrum doloremque voluptatem veritatis consectetur illo dolorum quos delectus quae
+                    rem, sed asperiores sequi reiciendis! Illum.</p>
             </div>
+
+            <div class="review-item">
+                <img src="assets/2.jpg">
+                <h2>Steve</h2>
+                <div class="rating">
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa facere ex, adipisci enim
+                    perferendis nostrum doloremque voluptatem veritatis consectetur illo dolorum quos delectus quae
+                    rem, sed asperiores sequi reiciendis! Illum.</p>
+            </div>
+            <div class="review-item">
+                <img src="assets/3.jpg">
+                <h2>David</h2>
+                <div class="rating">
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                    <i class='bx bxs-star' id="Star"></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa facere ex, adipisci enim
+                    perferendis nostrum doloremque voluptatem veritatis consectetur illo dolorum quos delectus quae
+                    rem, sed asperiores sequi reiciendis! Illum.</p>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!--Footer Section code-->
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="social">
+        <a href="#"><i class="bx bxl-facebook"></i></a>
+        <a href="#"><i class="bx bxl-instagram"></i></a>
+        <a href="#"><i class="bx bxl-linkedin"></i></a>
+    </div>
 
-    <footer class="footer">
-        <div class="social">
-            <a href="#"><i class='bx bxl-facebook'></i></a>
-            <a href="#"><i class='bx bxl-instagram'></i></a>
-            <a href="#"><i class='bx bxl-linkedin'></i></a>
-        </div>
+    <p class="copyright">&copy; Royal Fitness 2025 - All Rights Reserved</p>
+</footer>
 
-        <p class="copyright">
-            &copy; Royal Fitness 2025 - All Rights Reserved
-        </p>
-    </footer>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            offset: 300,
-            duration: 1400,
-        });
-    </script>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="app.js"></script>
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        offset: 300,
+        duration: 1400,
+    });
+</script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="app.js"></script>
+
+<!-- Admin Login Handling: View Users and Join Us Button -->
+<script>
+    function updateHeader() {
+        const topBtnContainer = document.getElementById('top-btn-container');
+        const loggedIn = localStorage.getItem('admin_logged_in');
+        const adminUsername = localStorage.getItem('admin_username');
+
+        if (loggedIn === 'true' && adminUsername) {
+            topBtnContainer.innerHTML = `
+                    <span class="welcome-text">Welcome, ${adminUsername}</span>
+                    <a href="viewusers.html" class="nav-btn" style="margin-left: 10px;">View Users</a>
+                    <a href="#" id="logout-btn" class="nav-btn" style="margin-left: 10px;">Log out</a>
+                `;
+
+            document.getElementById('logout-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('admin_logged_in');
+                localStorage.removeItem('admin_username');
+                window.location.href = 'authentication.html';
+            });
+        } else {
+            topBtnContainer.innerHTML = `<a href="authentication.html" class="nav-btn">Join us</a>`;
+        }
+    }
+
+    function updateHomeJoinButton() {
+        const loggedIn = localStorage.getItem('admin_logged_in');
+        const joinBtn = document.getElementById('home-join-us-btn');
+        if (loggedIn === 'true' && joinBtn) {
+            joinBtn.style.display = 'none'; // hide the Join Us button when admin is logged in
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateHeader();
+        updateHomeJoinButton();
+    });
+</script>
 </body>
 
 </html>
